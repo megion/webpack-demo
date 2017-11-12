@@ -1,14 +1,14 @@
 'use strict';
 
-//import welcome from './welcome';
+import welcome from './welcome';
 
-//welcome("home");
+welcome("home");
 
-//exports.welcome = welcome;
-//
-//
+exports.welcome = welcome;
 
-let welcome = require('./welcome.js');
 
-welcome('home');
+
+//let welcome = require('./welcome.js');
+
+//welcome('home');
 
