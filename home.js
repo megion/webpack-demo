@@ -4,9 +4,9 @@ import welcome from './welcome';
 
 welcome("home");
 
-exports.welcome = welcome;
+//exports.welcome = welcome;
 
-//export default welcome;
+export default welcome;
 
 
 

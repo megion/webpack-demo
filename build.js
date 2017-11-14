@@ -71,6 +71,10 @@ var home =
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _welcome = __webpack_require__(1);
 
 var _welcome2 = _interopRequireDefault(_welcome);
@@ -79,10 +83,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _welcome2.default)("home");
 
-exports.welcome = _welcome2.default;
+//exports.welcome = welcome;
 
-//export default welcome;
-
+exports.default = _welcome2.default;
 
 //let welcome = require('./welcome.js');
 
@@ -105,7 +108,8 @@ exports.default = function (message) {
   //console.log(message);
   //}
 
-  alert(`Welcome ${message}`);
+  //alert(`Welcome ${message}`);
+  console.log(`Welcome ${message}`);
 };
 
 ;
