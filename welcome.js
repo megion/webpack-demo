@@ -7,7 +7,7 @@ export default function(message) {
   //}
 
   //alert(`Welcome ${message}`);
-  console.log(`Welcome ${message}`);
+  console.log(`Welcome ${message} user`);
 };
 
 //module.exports = function(message) {

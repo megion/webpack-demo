@@ -68,55 +68,87 @@ var home =
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('./welcome'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.welcome);
+    global.home = mod.exports;
+  }
+})(this, function (exports, _welcome) {
+  'use strict';
 
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.welcome = undefined;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+  var _welcome2 = _interopRequireDefault(_welcome);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  (0, _welcome2.default)("home");
+
+  //exports.welcome = welcome;
+
+  //export default welcome;
+  exports.welcome = _welcome2.default;
 });
-
-var _welcome = __webpack_require__(1);
-
-var _welcome2 = _interopRequireDefault(_welcome);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-(0, _welcome2.default)("home");
-
-//exports.welcome = welcome;
-
-exports.default = _welcome2.default;
-
-//let welcome = require('./welcome.js');
-
-//welcome('home');
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.welcome = mod.exports;
+  }
+})(this, function (exports) {
+  'use strict';
 
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+  exports.default = function (message) {
 
-exports.default = function (message) {
+    //if (NODE_ENV == 'development') {
+    //console.log(message);
+    //}
 
-  //if (NODE_ENV == 'development') {
-  //console.log(message);
-  //}
+    //alert(`Welcome ${message}`);
+    console.log(`Welcome ${message} user`);
+  };
 
+  ;
+
+  //module.exports = function(message) {
   //alert(`Welcome ${message}`);
-  console.log(`Welcome ${message}`);
-};
-
-;
-
-//module.exports = function(message) {
-//alert(`Welcome ${message}`);
-//};
+  //};
+});
 
 /***/ })
 /******/ ]);

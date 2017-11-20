@@ -22,7 +22,9 @@ module.exports = {
                 loader: "babel-loader" 
             }
         ]
-    }
+    },
+    
+    watch: true
    
     // configuration regarding modules
     //module: {

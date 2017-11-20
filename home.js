@@ -6,8 +6,8 @@ welcome("home");
 
 //exports.welcome = welcome;
 
-export default welcome;
-
+//export default welcome;
+export {welcome};
 
 
 //let welcome = require('./welcome.js');
