@@ -2,7 +2,6 @@
 //const webpack = require('webpack');
 
 module.exports = {
-    entry:  "./home",
     entry: "./home", // string | object | array
     // Here the application starts executing
     // and webpack starts bundling

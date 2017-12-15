@@ -1,10 +1,10 @@
 'use strict';
 
-import welcome from './welcome';
+import welcomeFunc from './welcome';
 
-welcome("home");
+welcomeFunc("home");
 
-exports.welcome = welcome;
+//exports.welcome = welcomeFunc;
 
 //export default welcome;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-export default function(message) {
+function welcomeFunc(message) {
 
   //if (NODE_ENV == 'development') {
     //console.log(message);
@@ -8,6 +8,9 @@ export default function(message) {
 
   alert(`Welcome ${message}`);
 };
+
+
+export {welcomeFunc};
 
 //module.exports = function(message) {
     //alert(`Welcome ${message}`);
