@@ -6,7 +6,8 @@ function welcomeFunc(message) {
     //console.log(message);
   //}
 
-  alert(`Welcome ${message}`);
+  //alert(`Welcome ${message}`);
+  console.log(`Welcome ${message} user`);
 };
 
 

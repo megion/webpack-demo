@@ -6,7 +6,7 @@ Install webpack
 
     $ npm install webpack@3.8 --save-dev
 
-Add dev package
+Run webpack
 
     $ npm i -D browser-sync
 

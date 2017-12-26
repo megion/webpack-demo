@@ -4,10 +4,10 @@ import welcomeFunc from './welcome';
 
 welcomeFunc("home");
 
-//exports.welcome = welcomeFunc;
+//exports.welcome = welcome;
 
 //export default welcome;
-
+export {welcome};
 
 
 //let welcome = require('./welcome.js');

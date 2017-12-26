@@ -70,21 +70,26 @@ var home =
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(require('./welcome'));
+    factory(exports, require('./welcome'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(global.welcome);
+    factory(mod.exports, global.welcome);
     global.home = mod.exports;
   }
-})(this, function (_welcome) {
+})(this, function (exports, _welcome) {
   'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.welcome = undefined;
 
   var _welcome2 = _interopRequireDefault(_welcome);
 
@@ -96,14 +101,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   (0, _welcome2.default)("home");
 
-  //exports.welcome = welcomeFunc;
+  //exports.welcome = welcome;
 
   //export default welcome;
-
-
-  //let welcome = require('./welcome.js');
-
-  //welcome('home');
+  exports.welcome = _welcome2.default;
 });
 
 /***/ }),
@@ -131,16 +132,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  function welcomeFunc(message) {
+
+  exports.default = function (message) {
 
     //if (NODE_ENV == 'development') {
     //console.log(message);
     //}
 
-    alert('Welcome ' + message);
+    //alert(`Welcome ${message}`);
+    console.log(`Welcome ${message} user`);
   };
 
-  exports.welcomeFunc = welcomeFunc;
+  ;
+
+  //module.exports = function(message) {
+  //alert(`Welcome ${message}`);
+  //};
 });
 
 /***/ })
