@@ -2,7 +2,7 @@
 
 import welcomeFunc from './welcome';
 
-welcomeFunc("home on branch master");
+welcomeFunc("home on branch testing");
 
 //exports.welcome = welcome;
 
