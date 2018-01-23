@@ -2,7 +2,7 @@
 
 import welcomeFunc from './welcome';
 
-welcomeFunc("home");
+welcomeFunc("home version 2");
 
 //exports.welcome = welcome;
 
