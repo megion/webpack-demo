@@ -7,7 +7,7 @@ function welcomeFunc(message) {
   //}
 
   //alert(`Welcome ${message}`);
-  console.log(`Welcome ${message} superuser 2`);
+  console.log(`Welcome ${message} superuser 5`);
 };
 
 
