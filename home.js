@@ -1,16 +1,12 @@
 'use strict';
 
-import welcomeFunc from './welcome';
+import * as welcome from "./welcome";
 
-welcomeFunc("home merged");
+welcome.welcomeFunc("home merged");
 
-//exports.welcome = welcome;
+function libFn(value) {
+    welcome.welcomeFunc(value)
+}
 
-//export default welcome;
-export {welcome};
 
-
-//let welcome = require('./welcome.js');
-
-//welcome('home');
-
+export {libFn};

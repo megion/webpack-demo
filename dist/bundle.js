@@ -1,5 +1,14 @@
-var home =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["MyLibHome"] = factory();
+	else
+		root["MyLibHome"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -69,42 +78,54 @@ var home =
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require('./welcome'));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.welcome);
-    global.home = mod.exports;
-  }
+    } else if (typeof exports !== "undefined") {
+        factory(exports, require("./welcome"));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.welcome);
+        global.home = mod.exports;
+    }
 })(this, function (exports, _welcome) {
-  'use strict';
+    'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.welcome = undefined;
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.libFn = undefined;
 
-  var _welcome2 = _interopRequireDefault(_welcome);
+    var welcome = _interopRequireWildcard(_welcome);
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
+    function _interopRequireWildcard(obj) {
+        if (obj && obj.__esModule) {
+            return obj;
+        } else {
+            var newObj = {};
 
-  (0, _welcome2.default)("home");
+            if (obj != null) {
+                for (var key in obj) {
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+                }
+            }
 
-  //exports.welcome = welcome;
+            newObj.default = obj;
+            return newObj;
+        }
+    }
 
-  //export default welcome;
-  exports.welcome = _welcome2.default;
+    welcome.welcomeFunc("home merged");
+
+    function libFn(value) {
+        welcome.welcomeFunc(value);
+    }
+
+    exports.libFn = libFn;
 });
 
 /***/ }),
@@ -112,43 +133,42 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports);
-    global.welcome = mod.exports;
-  }
+    } else if (typeof exports !== "undefined") {
+        factory(exports);
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports);
+        global.welcome = mod.exports;
+    }
 })(this, function (exports) {
-  'use strict';
+    'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    function welcomeFunc(message) {
 
-  exports.default = function (message) {
+        //if (NODE_ENV == 'development') {
+        //console.log(message);
+        //}
 
-    //if (NODE_ENV == 'development') {
-    //console.log(message);
-    //}
+        //alert(`Welcome ${message}`);
 
-    //alert(`Welcome ${message}`);
-    console.log(`Welcome ${message} user`);
-  };
+        debugger;
+        console.log(`Welcome ${message} user merged`);
+    };
 
-  ;
-
-  //module.exports = function(message) {
-  //alert(`Welcome ${message}`);
-  //};
+    exports.welcomeFunc = welcomeFunc;
 });
 
 /***/ })
 /******/ ]);
+});
+//# sourceMappingURL=bundle.js.map
