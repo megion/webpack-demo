@@ -77,96 +77,51 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports !== "undefined") {
-        factory(exports, require("./welcome"));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.welcome);
-        global.home = mod.exports;
-    }
-})(this, function (exports, _welcome) {
-    'use strict';
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    exports.libFn = undefined;
 
-    var welcome = _interopRequireWildcard(_welcome);
-
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        } else {
-            var newObj = {};
-
-            if (obj != null) {
-                for (var key in obj) {
-                    if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                }
-            }
-
-            newObj.default = obj;
-            return newObj;
-        }
-    }
-
-    welcome.welcomeFunc("home merged");
-
-    function libFn(value) {
-        welcome.welcomeFunc(value);
-    }
-
-    exports.libFn = libFn;
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
+exports.libFn = undefined;
+
+var _welcome = __webpack_require__(1);
+
+var welcome = _interopRequireWildcard(_welcome);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+welcome.welcomeFunc("home merged");
+
+function libFn(value) {
+    welcome.welcomeFunc(value);
+}
+
+exports.libFn = libFn;
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports !== "undefined") {
-        factory(exports);
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports);
-        global.welcome = mod.exports;
-    }
-})(this, function (exports) {
-    'use strict';
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    function welcomeFunc(message) {
 
-        //if (NODE_ENV == 'development') {
-        //console.log(message);
-        //}
-
-        //alert(`Welcome ${message}`);
-
-        debugger;
-        console.log(`Welcome ${message} user merged`);
-    };
-
-    exports.welcomeFunc = welcomeFunc;
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
+function welcomeFunc(message) {
+
+    //if (NODE_ENV == 'development') {
+    //console.log(message);
+    //}
+
+    //alert(`Welcome ${message}`);
+
+    debugger;
+    console.log(`Welcome ${message} user merged`);
+};
+
+exports.welcomeFunc = welcomeFunc;
 
 /***/ })
 /******/ ]);

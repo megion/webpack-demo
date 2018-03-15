@@ -1,4 +1,4 @@
-//const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 //const webpack = require('webpack');
 
 const path = require('path');
@@ -28,14 +28,25 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader" 
+                loader: "babel-loader", 
+                options: {
+                    //"presets": [
+                        //["env", {
+                            //"targets": {
+                                //"edge": "12"
+                            //}
+                        //}]
+                    //]
+                    //"plugins": ["transform-es2015-modules-umd"]
+                }
+                // options for the loader
             }
         ]
     },
     
-    watch: true,
+    watch: NODE_ENV === 'development',
 
-    devtool: "source-map" // enum
+    devtool: NODE_ENV === 'development' ? "source-map" : false // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
    

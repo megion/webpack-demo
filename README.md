@@ -4,9 +4,7 @@ Install webpack
     npm install -g webpack
     exit
 
-    $ npm install webpack@3.8 --save-dev
+Run webpack in production mode
 
-Run webpack
-
-    $ npm i -D browser-sync
+    $ NODE_ENV=production webpack
 
