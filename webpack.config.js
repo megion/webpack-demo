@@ -1,5 +1,5 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
-//const webpack = require('webpack');
+const webpack = require('webpack');
 
 const path = require('path');
 
@@ -22,6 +22,15 @@ module.exports = {
         libraryTarget: "umd" // universal module definition
         // the type of the exported library
     },
+
+    plugins: [
+        //new webpack.NoEmitOnErrorsPlugin()
+        //new webpack.optimize.CommonsChunkPlugin({name: "common"})
+        new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                filename: 'vendor-[hash].min.js',
+        })
+    ],
 
     module: {
         rules: [
@@ -77,5 +86,17 @@ module.exports = {
 
     //}
 };
+
+if (NODE_ENV == 'production') {
+    module.exports.plugins.push(
+        // build optimization plugins
+        new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false,
+                    drop_console: false,
+                }
+        })
+    );
+}
 
     
