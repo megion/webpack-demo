@@ -1,11 +1,12 @@
 {
     "presets": [
-        ["env", {
-            "targets": {
-                /*"edge": "12"*/
-                "chrome": "60"
-            }
-        }]
+        /*["env", {*/
+            /*"targets": {*/
+                /*[>"edge": "12"<]*/
+                /*"chrome": "60"*/
+            /*}*/
+        /*}]*/
+        ["env"]
     ],
     /*"plugins": ["transform-es2015-modules-umd"]*/
 }
