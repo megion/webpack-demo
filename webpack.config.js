@@ -1,6 +1,7 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+//const ChunksPlugin = require('webpack-split-chunks');
 
 const path = require('path');
 
@@ -34,20 +35,26 @@ module.exports = {
         // the type of the exported library
     },
 
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
+    },
+
     plugins: [
         //new webpack.NoEmitOnErrorsPlugin()
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "common",
-            chunks: ["home", "about"]
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "common2",
-            chunks: ["home2", "about2"]
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commonDynamicLoad",
-            chunks: ["dynamicLoadWelcome"]
-        })
+        //new webpack.optimize.CommonsChunkPlugin({
+            //name: "common",
+            //chunks: ["home", "about"]
+        //}),
+        //new webpack.optimize.CommonsChunkPlugin({
+            //name: "common2",
+            //chunks: ["home2", "about2"]
+        //}),
+        //new webpack.optimize.CommonsChunkPlugin({
+            //name: "commonDynamicLoad",
+            //chunks: ["dynamicLoadWelcome"]
+        //})
         //new webpack.optimize.CommonsChunkPlugin({
                 //name: 'vendor',
                 //filename: 'vendor-[hash].min.js',
@@ -61,13 +68,13 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "babel-loader", 
                 options: {
-                    //"presets": [
-                        //["env", {
-                            //"targets": {
-                                //"edge": "12"
-                            //}
-                        //}]
-                    //]
+                    "presets": [
+                        ["env", {
+                            "targets": {
+                                "chrome": "60"
+                            }
+                        }]
+                    ]
                     //"plugins": ["transform-es2015-modules-umd"]
                 }
                 // options for the loader

@@ -8,7 +8,7 @@
 	else
 		root["about2"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
-return webpackJsonp_name_([4],{
+return webpackJsonp_name_([3],{
 
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {

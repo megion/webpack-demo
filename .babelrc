@@ -6,7 +6,7 @@
                 /*"chrome": "60"*/
             /*}*/
         /*}]*/
-        ["env"]
+        /*["env"]*/
     ],
     /*"plugins": ["transform-es2015-modules-umd"]*/
 }

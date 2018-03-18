@@ -34,9 +34,8 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		6: 0,
-/******/ 		0: 0,
-/******/ 		7: 0
+/******/ 		5: 0,
+/******/ 		6: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -119,8 +118,8 @@ function getWelcomeMessage(message) {
     //alert(`Welcome ${message}`);
 
     //debugger;
-    var msg = "Welcome " + message;
-    console.log("welcom module: " + msg);
+    let msg = `Welcome ${message}`;
+    console.log(`welcom module: ${msg}`);
     return msg;
 };
 
