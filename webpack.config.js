@@ -68,12 +68,12 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "babel-loader", 
                 options: {
-                    "presets": [
-                        ["env", {
-                            "targets": {
-                                "chrome": "60"
-                            }
-                        }]
+                    "presets": ["env"
+                        //["env", {
+                            //"targets": {
+                                //"chrome": "60"
+                            //}
+                        //}]
                     ]
                     //"plugins": ["transform-es2015-modules-umd"]
                 }
@@ -89,19 +89,19 @@ module.exports = {
     // source-map most detailed at the expense of build speed.
 };
 
-if (NODE_ENV == 'production') {
-    module.exports.plugins.push(
-        // build optimization plugins
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                ecma: 8
-            }
-            //compress: {
-                //warnings: false,
-                //drop_console: false,
+//if (NODE_ENV == 'production') {
+    //module.exports.plugins.push(
+        //// build optimization plugins
+        //new UglifyJsPlugin({
+            //uglifyOptions: {
+                //ecma: 8
             //}
-        })
-    );
-}
+            ////compress: {
+                ////warnings: false,
+                ////drop_console: false,
+            ////}
+        //})
+    //);
+//}
 
     
