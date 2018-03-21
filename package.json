@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "dev": "./node_modules/webpack/bin/webpack.js --mode development",
+    "build": "./node_modules/webpack/bin/webpack.js --mode production"
   },
   "author": "ilya.zadorozhny",
   "license": "ISC",
@@ -16,7 +16,8 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.6.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "webpack-cli": "^2.0.12",
+    "yargs-parser": "^9.0.2"
   },
   "dependencies": {}
 }

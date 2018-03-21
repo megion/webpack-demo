@@ -1,10 +1,10 @@
 Install webpack
 
     su
-    npm install -g webpack
+    npm install -g webpack@4.1.1
     exit
 
 Run webpack in production mode
 
-    $ NODE_ENV=production webpack
+    $ npm run build 
 

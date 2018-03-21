@@ -1,9 +1,9 @@
-const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 //const ChunksPlugin = require('webpack-split-chunks');
 
 const path = require('path');
+var argv = require('yargs-parser')(process.argv.slice(2))
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
@@ -12,6 +12,7 @@ module.exports = {
         "about": "./about",
         "home2": "./home2",
         "about2": "./about2",
+        "demoRoutes": "./demoRoutes",
         "dynamicLoadWelcome": "./dynamicLoadWelcome"
     }, // string | object | array
     // Here the application starts executing
@@ -35,11 +36,11 @@ module.exports = {
         // the type of the exported library
     },
 
-    optimization: {
-        splitChunks: {
-            chunks: "all"
-        }
-    },
+    //optimization: {
+        //splitChunks: {
+            //chunks: "all"
+        //}
+    //},
 
     plugins: [
         //new webpack.NoEmitOnErrorsPlugin()
@@ -82,9 +83,9 @@ module.exports = {
         ]
     },
     
-    watch: NODE_ENV === 'development',
+    watch: argv.mode === 'development',
 
-    devtool: NODE_ENV === 'development' ? "source-map" : false // enum
+    devtool: argv.mode === 'development' ? "source-map" : false // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
 };

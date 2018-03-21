@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["dynamicLoadWelcome"] = factory();
+		exports["demoRoutes"] = factory();
 	else
-		root["dynamicLoadWelcome"] = factory();
+		root["demoRoutes"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
@@ -42,7 +42,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// object to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		"dynamicLoadWelcome": 0
+/******/ 		"demoRoutes": 0
 /******/ 	};
 /******/
 /******/
@@ -179,46 +179,92 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./dynamicLoadWelcome.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./demoRoutes.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./dynamicLoadWelcome.js":
-/*!*******************************!*\
-  !*** ./dynamicLoadWelcome.js ***!
-  \*******************************/
+/***/ "./demoRoutes.js":
+/*!***********************!*\
+  !*** ./demoRoutes.js ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
+var moduleName = location.hash.slice(1); //location.pathname.slice(1);
+
+console.log(location);
+
+console.log('init module ' + moduleName);
+
+__webpack_require__("./routes lazy recursive ^\\.\\/.*$")("./" + moduleName).then(function (router) {
+    router.route();
+}).catch(function (err) {
+    console.error('module not found ' + moduleName, err);
 });
-function getWelcomeMessageDynamical(message) {
-    //require(['./welcome'], function(welcome) {
-    //welcome.getWelcomeMessage(message);
-    //});
-    __webpack_require__.e(/*! import() */ 0).then(function() { var module = __webpack_require__(/*! ./welcome */ "./welcome.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (welcome) {
-        return welcome.getWelcomeMessage(message);
-    });
+
+//import route from `./routes/${moduleName}`;
+
+//route();
+
+//function test() {
+//console.log("test");
+//}
+
+//export {test};
+
+/***/ }),
+
+/***/ "./routes lazy recursive ^\\.\\/.*$":
+/*!***********************************************!*\
+  !*** ./routes lazy ^\.\/.*$ namespace object ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./route1": [
+		"./routes/route1.js",
+		2
+	],
+	"./route1.js": [
+		"./routes/route1.js",
+		2
+	],
+	"./route2": [
+		"./routes/route2.js",
+		3
+	],
+	"./route2.js": [
+		"./routes/route2.js",
+		3
+	]
 };
-
-function getAbout2MessageDynamical() {
-    __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! ./about2 */ "./about2.js")]; (function (about2) {
-        about2.getAboutWelcome();
-    }).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}).catch(__webpack_require__.oe);
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids) {
+		return Promise.resolve().then(function() {
+			var e = new Error('Cannot find module "' + req + '".');
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+	return __webpack_require__.e(ids[1]).then(function() {
+		var module = __webpack_require__(ids[0]);
+		return (typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }));
+	});
+}
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
 };
-
-console.log("init dynamic load welcome module");
-
-exports.getWelcomeMessageDynamical = getWelcomeMessageDynamical;
-exports.getAbout2MessageDynamical = getAbout2MessageDynamical;
+webpackAsyncContext.id = "./routes lazy recursive ^\\.\\/.*$";
+module.exports = webpackAsyncContext;
 
 /***/ })
 
 /******/ });
 });
-//# sourceMappingURL=dynamicLoadWelcome.js.map
+//# sourceMappingURL=demoRoutes.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://[name]/./routes/route1.js"],"names":["route","console","log"],"mappings":";;;;;;;;;;AAAA;;;;;QAEgBA,K,GAAAA,K;AAAT,SAASA,KAAT,GAAiB;AACpBC,YAAQC,GAAR,CAAY,SAAZ;AACH,E","file":"2.js","sourcesContent":["'use strict';\n\nexport function route() {\n    console.log('route 1');\n};\n"],"sourceRoot":""}
