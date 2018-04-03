@@ -1,8 +1,6 @@
-Install webpack
+Run webpack in production mode
 
-    su
-    npm install -g webpack@4.1.1
-    exit
+    $ npm run dev 
 
 Run webpack in production mode
 

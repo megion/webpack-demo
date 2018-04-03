@@ -228,19 +228,19 @@ __webpack_require__("./routes lazy recursive ^\\.\\/.*$")("./" + moduleName).the
 var map = {
 	"./route1": [
 		"./routes/route1.js",
-		2
+		3
 	],
 	"./route1.js": [
 		"./routes/route1.js",
-		2
+		3
 	],
 	"./route2": [
 		"./routes/route2.js",
-		3
+		4
 	],
 	"./route2.js": [
 		"./routes/route2.js",
-		3
+		4
 	]
 };
 function webpackAsyncContext(req) {

@@ -204,10 +204,16 @@ function getWelcomeMessageDynamical(message) {
     __webpack_require__.e(/*! import() */ 0).then(function() { var module = __webpack_require__(/*! ./welcome */ "./welcome.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (welcome) {
         return welcome.getWelcomeMessage(message);
     });
+
+    Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(1)]).then(function() { var module = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (module) {
+        var moment = module.default;
+        var today = moment(new Date()).locale('ja');
+        console.log(today.format('DD MMM YYYY'));
+    });
 };
 
 function getAbout2MessageDynamical() {
-    __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! ./about2 */ "./about2.js")]; (function (about2) {
+    __webpack_require__.e(/*! AMD require */ 2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! ./about2 */ "./about2.js")]; (function (about2) {
         about2.getAboutWelcome();
     }).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}).catch(__webpack_require__.oe);
 };
