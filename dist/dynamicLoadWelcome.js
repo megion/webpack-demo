@@ -184,6 +184,81 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
+/***/ "../node_modules/lodash/_baseSlice.js":
+/*!********************************************!*\
+  !*** ../node_modules/lodash/_baseSlice.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start);
+  }
+  end = end > length ? length : end;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : ((end - start) >>> 0);
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+module.exports = baseSlice;
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash/tail.js":
+/*!**************************************!*\
+  !*** ../node_modules/lodash/tail.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseSlice = __webpack_require__(/*! ./_baseSlice */ "../node_modules/lodash/_baseSlice.js");
+
+/**
+ * Gets all but the first element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.tail([1, 2, 3]);
+ * // => [2, 3]
+ */
+function tail(array) {
+  var length = array == null ? 0 : array.length;
+  return length ? baseSlice(array, 1, length) : [];
+}
+
+module.exports = tail;
+
+
+/***/ }),
+
 /***/ "./dynamicLoadWelcome.js":
 /*!*******************************!*\
   !*** ./dynamicLoadWelcome.js ***!
@@ -197,6 +272,16 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.getAbout2MessageDynamical = exports.getWelcomeMessageDynamical = undefined;
+
+var _tail = __webpack_require__(/*! lodash/tail */ "../node_modules/lodash/tail.js");
+
+var _tail2 = _interopRequireDefault(_tail);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//import * as _ from 'lodash/array';
+
 function getWelcomeMessageDynamical(message) {
     //require(['./welcome'], function(welcome) {
     //welcome.getWelcomeMessage(message);
@@ -207,8 +292,13 @@ function getWelcomeMessageDynamical(message) {
 
     Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(1)]).then(function() { var module = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (module) {
         var moment = module.default;
-        var today = moment(new Date()).locale('ja');
+        var today = moment(new Date()).locale('ru');
         console.log(today.format('DD MMM YYYY'));
+
+        var users = [{ id: "abcd", name: "Vasya" }, { id: "defa", name: "Petya" }, { id: "1234", name: "Masha" }];
+
+        console.log((0, _tail2.default)(users));
+        //console.log(_.tail(users));
     });
 };
 

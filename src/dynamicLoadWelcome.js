@@ -1,5 +1,8 @@
 'use strict';
 
+import tail from 'lodash/tail';
+//import * as _ from 'lodash/array';
+
 function getWelcomeMessageDynamical(message) {
     //require(['./welcome'], function(welcome) {
         //welcome.getWelcomeMessage(message);
@@ -10,8 +13,17 @@ function getWelcomeMessageDynamical(message) {
 
     import('moment').then(function(module) {
         const moment = module.default;
-        let today = moment(new Date()).locale('ja');
+        let today = moment(new Date()).locale('ru');
         console.log(today.format('DD MMM YYYY'));
+
+        let users = [
+            {id: "abcd", name: "Vasya"},
+            {id: "defa", name: "Petya"},
+            {id: "1234", name: "Masha"}
+        ];
+
+        console.log(tail(users));
+        //console.log(_.tail(users));
     });
 };
 

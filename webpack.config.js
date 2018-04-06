@@ -43,23 +43,8 @@ module.exports = {
     //},
 
     plugins: [
-        //new webpack.NoEmitOnErrorsPlugin()
-        //new webpack.optimize.CommonsChunkPlugin({
-            //name: "common",
-            //chunks: ["home", "about"]
-        //}),
-        //new webpack.optimize.CommonsChunkPlugin({
-            //name: "common2",
-            //chunks: ["home2", "about2"]
-        //}),
-        //new webpack.optimize.CommonsChunkPlugin({
-            //name: "commonDynamicLoad",
-            //chunks: ["dynamicLoadWelcome"]
-        //})
-        //new webpack.optimize.CommonsChunkPlugin({
-                //name: 'vendor',
-                //filename: 'vendor-[hash].min.js',
-        //})
+        // filter moment lib files
+        new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en-gb/)
     ],
 
     module: {
