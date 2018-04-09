@@ -259,6 +259,25 @@ module.exports = tail;
 
 /***/ }),
 
+/***/ "../vendor/old/dist/old.js":
+/*!*********************************!*\
+  !*** ../vendor/old/dist/old.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+function Work() {
+  setTimeout(function() {
+    alert("work complete!");
+  }, workSettings.delay);
+}
+
+
+
+
+/***/ }),
+
 /***/ "./dynamicLoadWelcome.js":
 /*!*******************************!*\
   !*** ./dynamicLoadWelcome.js ***!
@@ -278,14 +297,23 @@ var _tail = __webpack_require__(/*! lodash/tail */ "../node_modules/lodash/tail.
 
 var _tail2 = _interopRequireDefault(_tail);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _old = __webpack_require__(/*! old */ "../vendor/old/dist/old.js");
 
-//import * as _ from 'lodash/array';
+var old = _interopRequireWildcard(_old);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getWelcomeMessageDynamical(message) {
     //require(['./welcome'], function(welcome) {
     //welcome.getWelcomeMessage(message);
     //});
+    //
+    //old();
+
+    Work();
+
     __webpack_require__.e(/*! import() */ 0).then(function() { var module = __webpack_require__(/*! ./welcome */ "./welcome.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (welcome) {
         return welcome.getWelcomeMessage(message);
     });
@@ -300,7 +328,10 @@ function getWelcomeMessageDynamical(message) {
         console.log((0, _tail2.default)(users));
         //console.log(_.tail(users));
     });
-};
+}
+//import * as _ from 'lodash/array';
+
+;
 
 function getAbout2MessageDynamical() {
     __webpack_require__.e(/*! AMD require */ 2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! ./about2 */ "./about2.js")]; (function (about2) {

@@ -36,22 +36,18 @@ module.exports = {
         // the type of the exported library
     },
 
-    //optimization: {
-        //splitChunks: {
-            //chunks: "all"
-        //}
-    //},
-
     plugins: [
         // filter moment lib files
-        new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en-gb/)
+        new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
+            /ru|en-gb/)
     ],
 
     module: {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                //exclude: /node_modules/,
+                include: /src/,
                 loader: "babel-loader", 
                 options: {
                     "presets": ["env"
@@ -66,6 +62,16 @@ module.exports = {
                 // options for the loader
             }
         ]
+        // since webpack 3.0.0
+        //noParse: function(content) {
+            //return /moment|lodash/.test(content);
+        //}
+    },
+
+    resolve: {
+        alias: {
+            old$: path.resolve(__dirname, 'vendor/old/dist/old.js')
+        }
     },
     
     watch: argv.mode === 'development',

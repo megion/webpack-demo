@@ -3,10 +3,17 @@
 import tail from 'lodash/tail';
 //import * as _ from 'lodash/array';
 
+import * as old from 'old';
+
 function getWelcomeMessageDynamical(message) {
     //require(['./welcome'], function(welcome) {
         //welcome.getWelcomeMessage(message);
     //});
+    //
+    //old();
+    
+    Work();
+
     import('./welcome').then(function(welcome) {
         return welcome.getWelcomeMessage(message);
     });
