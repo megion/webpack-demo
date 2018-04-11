@@ -3,16 +3,19 @@
 import tail from 'lodash/tail';
 //import * as _ from 'lodash/array';
 
-import * as old from 'old';
+//import * as old from 'old';
+
+let old = require("old");
 
 function getWelcomeMessageDynamical(message) {
     //require(['./welcome'], function(welcome) {
         //welcome.getWelcomeMessage(message);
     //});
     //
-    //old();
+    old();
     
-    Work();
+    //Work();
+    
 
     import('./welcome').then(function(welcome) {
         return welcome.getWelcomeMessage(message);

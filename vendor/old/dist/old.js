@@ -1,7 +1,7 @@
 
 function Work() {
   setTimeout(function() {
-    alert("work complete!");
+    console.log("work complete!");
   }, workSettings.delay);
 }
 

@@ -42,6 +42,12 @@ module.exports = {
             /ru|en-gb/)
     ],
 
+    resolve: {
+        alias: {
+            old$: path.resolve(__dirname, 'vendor/old/dist/old.js')
+        }
+    },
+
     module: {
         rules: [
             {
@@ -60,7 +66,14 @@ module.exports = {
                     //"plugins": ["transform-es2015-modules-umd"]
                 }
                 // options for the loader
+            },
+            {
+                // 
+                test: /old.js/,
+                loader: "imports-loader?workSettings=>\
+                {delay:500}!exports-loader?Work"
             }
+
         ]
         // since webpack 3.0.0
         //noParse: function(content) {
@@ -68,11 +81,7 @@ module.exports = {
         //}
     },
 
-    resolve: {
-        alias: {
-            old$: path.resolve(__dirname, 'vendor/old/dist/old.js')
-        }
-    },
+    
     
     watch: argv.mode === 'development',
 
