@@ -12,7 +12,8 @@ module.exports = {
         "about": "./about",
         "home2": "./home2",
         "about2": "./about2",
-        "demoRoutes": "./demoRoutes",
+        "demo-routes": "./demo-routes",
+        "demo-components": "./demo-components",
         "dynamicLoadWelcome": "./dynamicLoadWelcome"
     }, // string | object | array
     // Here the application starts executing
@@ -72,6 +73,11 @@ module.exports = {
                 test: /old.js/,
                 loader: "imports-loader?workSettings=>\
                 {delay:500}!exports-loader?Work"
+            },
+            {
+                test:   /\.css$/,
+                // .../node_modules/css-loader/index.js!.../node_modules/autoprefixer-loader/index.js?browsers=last 2 versions!.../frontend/menu/menu.css
+                loader: 'style!css!autoprefixer?browsers=last 2 versions'
             }
 
         ]

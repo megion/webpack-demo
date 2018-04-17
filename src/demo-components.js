@@ -1,6 +1,6 @@
 'use strict';
 
-import Menu from './menu';
+import Menu from './components/menu';
 
 let pandaMenu = new Menu({
   title: "Меню панды",
