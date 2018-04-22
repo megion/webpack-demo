@@ -1,40 +1,66 @@
 (window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[1],{
 
-/***/ "../node_modules/moment/locale sync recursive ru|en-gb":
-/*!***************************************************!*\
-  !*** ../node_modules/moment/locale sync ru|en-gb ***!
-  \***************************************************/
+/***/ "./about2.js":
+/*!*******************!*\
+  !*** ./about2.js ***!
+  \*******************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var map = {
-	"./en-gb": "../node_modules/moment/locale/en-gb.js",
-	"./en-gb.js": "../node_modules/moment/locale/en-gb.js",
-	"./ru": "../node_modules/moment/locale/ru.js",
-	"./ru.js": "../node_modules/moment/locale/ru.js"
-};
+"use strict";
 
 
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	var module = __webpack_require__(id);
-	return module;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getAboutWelcome = undefined;
+
+var _welcome = __webpack_require__(/*! ./welcome */ "./welcome.js");
+
+var welcome = _interopRequireWildcard(_welcome);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function getAboutWelcome() {
+    return welcome.getWelcomeMessage("you are in about2");
 }
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) { // check for number or string
-		var e = new Error('Cannot find module "' + req + '".');
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return id;
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
+
+console.log("init about2 module");
+
+exports.getAboutWelcome = getAboutWelcome;
+
+/***/ }),
+
+/***/ "./welcome.js":
+/*!********************!*\
+  !*** ./welcome.js ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function getWelcomeMessage(message) {
+
+    //if (NODE_ENV == 'development') {
+    //console.log(message);
+    //}
+
+    //alert(`Welcome ${message}`);
+
+    //debugger;
+    var msg = "Welcome " + message;
+    console.log("welcom module: " + msg);
+    return msg;
 };
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "../node_modules/moment/locale sync recursive ru|en-gb";
+
+console.log("init welcome module");
+
+exports.getWelcomeMessage = getWelcomeMessage;
 
 /***/ })
 

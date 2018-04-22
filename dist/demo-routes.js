@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["dynamicLoadWelcome"] = factory();
+		exports["demo-routes"] = factory();
 	else
-		root["dynamicLoadWelcome"] = factory();
+		root["demo-routes"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
@@ -42,7 +42,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// object to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		"dynamicLoadWelcome": 0
+/******/ 		"demo-routes": 0
 /******/ 	};
 /******/
 /******/
@@ -179,152 +179,92 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./dynamicLoadWelcome.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./demo-routes.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "../node_modules/lodash/_baseSlice.js":
-/*!********************************************!*\
-  !*** ../node_modules/lodash/_baseSlice.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.slice` without an iteratee call guard.
- *
- * @private
- * @param {Array} array The array to slice.
- * @param {number} [start=0] The start position.
- * @param {number} [end=array.length] The end position.
- * @returns {Array} Returns the slice of `array`.
- */
-function baseSlice(array, start, end) {
-  var index = -1,
-      length = array.length;
-
-  if (start < 0) {
-    start = -start > length ? 0 : (length + start);
-  }
-  end = end > length ? length : end;
-  if (end < 0) {
-    end += length;
-  }
-  length = start > end ? 0 : ((end - start) >>> 0);
-  start >>>= 0;
-
-  var result = Array(length);
-  while (++index < length) {
-    result[index] = array[index + start];
-  }
-  return result;
-}
-
-module.exports = baseSlice;
-
-
-/***/ }),
-
-/***/ "../node_modules/lodash/tail.js":
-/*!**************************************!*\
-  !*** ../node_modules/lodash/tail.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseSlice = __webpack_require__(/*! ./_baseSlice */ "../node_modules/lodash/_baseSlice.js");
-
-/**
- * Gets all but the first element of `array`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * _.tail([1, 2, 3]);
- * // => [2, 3]
- */
-function tail(array) {
-  var length = array == null ? 0 : array.length;
-  return length ? baseSlice(array, 1, length) : [];
-}
-
-module.exports = tail;
-
-
-/***/ }),
-
-/***/ "./dynamicLoadWelcome.js":
-/*!*******************************!*\
-  !*** ./dynamicLoadWelcome.js ***!
-  \*******************************/
+/***/ "./demo-routes.js":
+/*!************************!*\
+  !*** ./demo-routes.js ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
+var moduleName = location.hash.slice(1); //location.pathname.slice(1);
+
+console.log(location);
+
+console.log('init module ' + moduleName);
+
+__webpack_require__("./routes lazy recursive ^\\.\\/.*$")("./" + moduleName).then(function (router) {
+    router.route();
+}).catch(function (err) {
+    console.error('module not found ' + moduleName, err);
 });
-exports.getAbout2MessageDynamical = exports.getWelcomeMessageDynamical = undefined;
 
-var _tail = __webpack_require__(/*! lodash/tail */ "../node_modules/lodash/tail.js");
+//import route from `./routes/${moduleName}`;
 
-var _tail2 = _interopRequireDefault(_tail);
+//route();
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//function test() {
+//console.log("test");
+//}
 
-//import * as _ from 'lodash/array';
+//export {test};
 
-//import * as old from 'old';
+/***/ }),
 
-var old = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"old\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+/***/ "./routes lazy recursive ^\\.\\/.*$":
+/*!***********************************************!*\
+  !*** ./routes lazy ^\.\/.*$ namespace object ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-function getWelcomeMessageDynamical(message) {
-    //require(['./welcome'], function(welcome) {
-    //welcome.getWelcomeMessage(message);
-    //});
-    //
-    old();
-
-    //Work();
-
-
-    __webpack_require__.e(/*! import() */ 0).then(function() { var module = __webpack_require__(/*! ./welcome */ "./welcome.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (welcome) {
-        return welcome.getWelcomeMessage(message);
-    });
-
-    Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module \"moment\""); e.code = 'MODULE_NOT_FOUND'; throw e; }).then(function (module) {
-        var moment = module.default;
-        var today = moment(new Date()).locale('ru');
-        console.log(today.format('DD MMM YYYY'));
-
-        var users = [{ id: "abcd", name: "Vasya" }, { id: "defa", name: "Petya" }, { id: "1234", name: "Masha" }];
-
-        console.log((0, _tail2.default)(users));
-        //console.log(_.tail(users));
-    });
+var map = {
+	"./route1": [
+		"./routes/route1.js",
+		2
+	],
+	"./route1.js": [
+		"./routes/route1.js",
+		2
+	],
+	"./route2": [
+		"./routes/route2.js",
+		3
+	],
+	"./route2.js": [
+		"./routes/route2.js",
+		3
+	]
 };
-
-function getAbout2MessageDynamical() {
-    __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! ./about2 */ "./about2.js")]; (function (about2) {
-        about2.getAboutWelcome();
-    }).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}).catch(__webpack_require__.oe);
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids) {
+		return Promise.resolve().then(function() {
+			var e = new Error('Cannot find module "' + req + '".');
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+	return __webpack_require__.e(ids[1]).then(function() {
+		var module = __webpack_require__(ids[0]);
+		return (typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }));
+	});
+}
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
 };
-
-console.log("init dynamic load welcome module");
-
-exports.getWelcomeMessageDynamical = getWelcomeMessageDynamical;
-exports.getAbout2MessageDynamical = getAbout2MessageDynamical;
+webpackAsyncContext.id = "./routes lazy recursive ^\\.\\/.*$";
+module.exports = webpackAsyncContext;
 
 /***/ })
 
 /******/ });
 });
-//# sourceMappingURL=dynamicLoadWelcome.js.map
+//# sourceMappingURL=demo-routes.js.map

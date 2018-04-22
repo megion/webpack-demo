@@ -14,7 +14,7 @@ module.exports = {
         "about2": "./about2",
         "demo-routes": "./demo-routes",
         "demo-components": "./demo-components",
-        "dynamicLoadWelcome": "./dynamicLoadWelcome"
+        "dynamic-load-welcome": "./dynamic-load-welcome"
     }, // string | object | array
     // Here the application starts executing
     // and webpack starts bundling
@@ -76,8 +76,27 @@ module.exports = {
             },
             {
                 test:   /\.css$/,
-                // .../node_modules/css-loader/index.js!.../node_modules/autoprefixer-loader/index.js?browsers=last 2 versions!.../frontend/menu/menu.css
-                loader: 'style!css!autoprefixer?browsers=last 2 versions'
+                // Adds CSS to the DOM by injecting a <style> tag
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]'
+                        }  
+                    }
+                ]
             }
 
         ]
