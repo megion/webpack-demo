@@ -87,6 +87,10 @@ module.exports = {
                     }
                 ]
             },
+            { 
+                test: /\.handlebars$/,
+                loader: "handlebars-loader"
+            },
             {
                 test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
                 use: [
