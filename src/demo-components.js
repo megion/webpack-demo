@@ -16,4 +16,6 @@ let pandaMenu = new Menu({
   }]
 });
 
-document.body.appendChild(pandaMenu.elem);
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.appendChild(pandaMenu.elem);
+});

@@ -11,6 +11,7 @@
 //document.body.appendChild(img);
 
 import template from './menu.handlebars';
+//var template = require("./menu.handlebars");
 
 export default class Menu {
   constructor(options) {

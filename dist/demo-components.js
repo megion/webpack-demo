@@ -1461,6 +1461,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//var template = require("./menu.handlebars");
+
 var Menu = function Menu(options) {
   var _this = this;
 
@@ -1502,7 +1504,7 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + alias2(alias1((depth0 != null ? depth0.href : depth0), depth0))
     + "\">"
     + alias2(alias1((depth0 != null ? depth0.text : depth0), depth0))
-    + "</a>\n    </li>\n";
+    + "</a>\n        </li>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
@@ -1545,7 +1547,9 @@ var pandaMenu = new _menu2.default({
   }]
 });
 
-document.body.appendChild(pandaMenu.elem);
+document.addEventListener("DOMContentLoaded", function () {
+  document.body.appendChild(pandaMenu.elem);
+});
 
 /***/ })
 
