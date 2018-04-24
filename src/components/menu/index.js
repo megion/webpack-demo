@@ -1,16 +1,16 @@
 'use strict';
 
-import style from './menu.css';
+//import style from './menu.css';
 
-console.log('style.className: ', style.className);
+//console.log('style.className: ', style.className);
 
-import minus from './minus.svg';
+//import minus from './minus.svg';
 
-let img = document.createElement('img');
-img.src = minus;
-document.body.appendChild(img);
+//let img = document.createElement('img');
+//img.src = minus;
+//document.body.appendChild(img);
 
-import template from './menu.jade';
+import template from './menu.handlebars';
 
 export default class Menu {
   constructor(options) {
