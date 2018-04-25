@@ -1443,15 +1443,13 @@ module.exports = g;
 
 //console.log('style.className: ', style.className);
 
-//import minus from './minus.svg';
-
-//let img = document.createElement('img');
-//img.src = minus;
-//document.body.appendChild(img);
-
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+
+var _minus = __webpack_require__(/*! ./minus.svg */ "./components/menu/minus.svg");
+
+var _minus2 = _interopRequireDefault(_minus);
 
 var _menu = __webpack_require__(/*! ./menu.handlebars */ "./components/menu/menu.handlebars");
 
@@ -1464,24 +1462,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //var template = require("./menu.handlebars");
 
 var Menu = function Menu(options) {
-  var _this = this;
+    var _this = this;
 
-  _classCallCheck(this, Menu);
+    _classCallCheck(this, Menu);
 
-  this.elem = document.createElement('div');
-  this.elem.className = 'menu';
+    this.container = document.createElement('div');
 
-  this.elem.innerHTML = (0, _menu2.default)(options);
+    var img = document.createElement('img');
+    img.src = _minus2.default;
+    this.container.appendChild(img);
 
-  this.titleElem = this.elem.querySelector('.title');
+    this.elem = document.createElement('div');
+    this.elem.className = 'menu';
+    this.container.appendChild(this.elem);
 
-  this.titleElem.onclick = function () {
-    return _this.elem.classList.toggle('open');
-  };
+    this.elem.innerHTML = (0, _menu2.default)(options);
 
-  this.titleElem.onmousedown = function () {
-    return false;
-  };
+    this.titleElem = this.elem.querySelector('.title');
+
+    this.titleElem.onclick = function () {
+        return _this.elem.classList.toggle('open');
+    };
+
+    this.titleElem.onmousedown = function () {
+        return false;
+    };
 };
 
 exports.default = Menu;
@@ -1517,6 +1522,17 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 
 /***/ }),
 
+/***/ "./components/menu/minus.svg":
+/*!***********************************!*\
+  !*** ./components/menu/minus.svg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "1b66b8289bb55a55c98c5d9d72b019ab.svg";
+
+/***/ }),
+
 /***/ "./demo-components.js":
 /*!****************************!*\
   !*** ./demo-components.js ***!
@@ -1534,21 +1550,21 @@ var _menu2 = _interopRequireDefault(_menu);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var pandaMenu = new _menu2.default({
-  title: "Меню панды",
-  items: [{
-    text: 'Яйца',
-    href: '#eggs'
-  }, {
-    text: 'Мясо',
-    href: '#meat'
-  }, {
-    text: '99% еды - бамбук!',
-    href: '#bamboo'
-  }]
+    title: "Меню панды",
+    items: [{
+        text: 'Яйца',
+        href: '#eggs'
+    }, {
+        text: 'Мясо',
+        href: '#meat'
+    }, {
+        text: '99% еды - бамбук!',
+        href: '#bamboo'
+    }]
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.body.appendChild(pandaMenu.elem);
+    document.body.appendChild(pandaMenu.container);
 });
 
 /***/ })

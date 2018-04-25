@@ -4,27 +4,30 @@
 
 //console.log('style.className: ', style.className);
 
-//import minus from './minus.svg';
-
-//let img = document.createElement('img');
-//img.src = minus;
-//document.body.appendChild(img);
+import minus from './minus.svg';
 
 import template from './menu.handlebars';
 //var template = require("./menu.handlebars");
 
 export default class Menu {
-  constructor(options) {
-    this.elem = document.createElement('div');
-    this.elem.className = 'menu';
+    constructor(options) {
+        this.container = document.createElement('div');
 
-    this.elem.innerHTML = template(options);
+        let img = document.createElement('img');
+        img.src = minus;
+        this.container.appendChild(img);
 
-    this.titleElem = this.elem.querySelector('.title');
+        this.elem = document.createElement('div');
+        this.elem.className = 'menu';
+        this.container.appendChild(this.elem);
 
-    this.titleElem.onclick = () => this.elem.classList.toggle('open');
+        this.elem.innerHTML = template(options);
 
-    this.titleElem.onmousedown = () => false;
-  }
+        this.titleElem = this.elem.querySelector('.title');
+
+        this.titleElem.onclick = () => this.elem.classList.toggle('open');
+
+        this.titleElem.onmousedown = () => false;
+    }
 }
 
