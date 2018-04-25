@@ -1,8 +1,8 @@
 'use strict';
 
-//import style from './menu.css';
+import style from './menu.css';
 
-//console.log('style.className: ', style.className);
+console.log('style.className: ', style.className);
 
 import minus from './minus.svg';
 

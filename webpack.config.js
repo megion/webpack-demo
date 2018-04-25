@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 //const ChunksPlugin = require('webpack-split-chunks');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const path = require('path');
 var argv = require('yargs-parser')(process.argv.slice(2))
@@ -38,6 +39,7 @@ module.exports = {
     },
 
     plugins: [
+        new CleanWebpackPlugin(['dist']),
         // filter moment lib files
         new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
             /ru|en-gb/)
@@ -97,7 +99,14 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[path][name].[ext]'
+                            //name: '[name].[ext]'
+                            name: function(file) {
+                                if (argv.mode === 'development') {
+                                    return '[path][name].[ext]';
+                                }
+
+                                return '[hash].[ext]';
+                            }
                         }  
                     }
                 ]
