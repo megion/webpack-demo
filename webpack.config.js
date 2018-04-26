@@ -80,6 +80,8 @@ module.exports = {
                 test:   /\.css$/,
                 // Adds CSS to the DOM by injecting a <style> tag
                 use: [
+                    // handlebars loader expects raw resource string
+                    { loader: 'handlebars-loader' },
                     { loader: 'style-loader' },
                     {
                         loader: 'css-loader',
