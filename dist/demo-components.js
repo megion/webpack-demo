@@ -374,7 +374,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.i(__webpack_require__(/*! -!../../../node_modules/css-loader??ref--6-1!flag-icon-css/css/flag-icon.css */ "../node_modules/css-loader/index.js??ref--6-1!../node_modules/flag-icon-css/css/flag-icon.css"), "");
 
 // module
-exports.push([module.i, "._3v6b8X1E_nLHQffrf9VWv2 ._1CkDr5OF_lkDr5gYTkjTiJ {\n  padding: 0 6px 0 16px;\n\n  background: url(" + escape(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"plus.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))) + ") left 1px no-repeat;\n  background-size: 14px;\n\n  font-weight: bold;\n  cursor: pointer;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2 .xkWvXarQHNlamzyAubv2K {\n  display: none;\n  margin: 0;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2 .xkWvXarQHNlamzyAubv2K a {\n  color: blue;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2._3fSFQBiayPDugr0-dBRL3F .xkWvXarQHNlamzyAubv2K {\n  display: block;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2._3fSFQBiayPDugr0-dBRL3F ._1CkDr5OF_lkDr5gYTkjTiJ {\n  background-image: url(" + escape(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"minus.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))) + ");\n}\n\n", ""]);
+exports.push([module.i, "._3v6b8X1E_nLHQffrf9VWv2 ._1CkDr5OF_lkDr5gYTkjTiJ {\n    padding: 0 6px 0 16px;\n\n    background: url(" + escape(__webpack_require__(/*! ./plus.svg */ "./components/menu/plus.svg")) + ") left 1px no-repeat;\n    background-size: 14px;\n\n    font-weight: bold;\n    cursor: pointer;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2 .xkWvXarQHNlamzyAubv2K {\n    display: none;\n    margin: 0;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2 .xkWvXarQHNlamzyAubv2K a {\n    color: blue;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2._3fSFQBiayPDugr0-dBRL3F .xkWvXarQHNlamzyAubv2K {\n    display: block;\n}\n\n._3v6b8X1E_nLHQffrf9VWv2._3fSFQBiayPDugr0-dBRL3F ._1CkDr5OF_lkDr5gYTkjTiJ {\n    background-image: url(" + escape(__webpack_require__(/*! ./minus.svg */ "./components/menu/minus.svg")) + ");\n}\n\n", ""]);
 
 // exports
 exports.locals = {
@@ -8001,7 +8001,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-console.log('style.className: ', _menu2.default.className);
+console.log('style: ', _menu2.default);
 
 //var template = require("./menu.handlebars");
 
@@ -8104,6 +8104,17 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "components/menu/minus.svg";
+
+/***/ }),
+
+/***/ "./components/menu/plus.svg":
+/*!**********************************!*\
+  !*** ./components/menu/plus.svg ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "components/menu/plus.svg";
 
 /***/ }),
 

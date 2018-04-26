@@ -2,7 +2,7 @@
 
 import style from './menu.css';
 
-console.log('style.className: ', style.className);
+console.log('style: ', style);
 
 import minus from './minus.svg';
 
