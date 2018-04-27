@@ -1,13 +1,10 @@
 'use strict';
 
-import style from './menu.css';
+import style from './menu.less';
 
-console.log('style: ', style);
-
-import minus from './minus.svg';
+import minus from '../img/minus.svg';
 
 import template from './menu.handlebars';
-//var template = require("./menu.handlebars");
 
 export default class Menu {
     constructor(options) {

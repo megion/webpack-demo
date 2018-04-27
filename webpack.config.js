@@ -80,15 +80,19 @@ module.exports = {
                 test:   /\.css$/,
                 // Adds CSS to the DOM by injecting a <style> tag
                 use: [
-                    // handlebars loader expects raw resource string
-                    { loader: 'handlebars-loader' },
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    }
+                    {loader: 'style-loader'},
+                    {loader: 'css-loader'}
+                ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    // creates style nodes from JS strings
+                    {loader: 'style-loader'},
+                    // translates CSS into CommonJS
+                    {loader: 'css-loader'},
+                    // compiles Less to CSS
+                    {loader: 'less-loader'}
                 ]
             },
             { 
@@ -112,7 +116,25 @@ module.exports = {
                         }  
                     }
                 ]
-            }
+            },
+            //{
+                //test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+                //use: [
+                    //{
+                        //loader: 'url-loader',
+                        //options: {
+                            //name: function(file) {
+                                //if (argv.mode === 'development') {
+                                    //return '[path][name].[ext]';
+                                //}
+
+                                //return '[hash].[ext]';
+                            //},
+                            //limit: 4096 
+                        //}
+                    //}
+                //]
+            //}
 
         ]
         // since webpack 3.0.0
