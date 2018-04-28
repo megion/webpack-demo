@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const path = require('path');
 var argv = require('yargs-parser')(process.argv.slice(2))
+var mode = argv.mode;
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
@@ -13,9 +14,9 @@ module.exports = {
         "about": "./about",
         "home2": "./home2",
         "about2": "./about2",
-        "demo-routes": "./demo-routes",
-        "demo-components": "./demo-components",
-        "dynamic-load-welcome": "./dynamic-load-welcome"
+        "demoRoutes": "./demo-routes",
+        "demoComponents": "./demo-components",
+        "dynamicLoadWelcome": "./dynamic-load-welcome"
     }, // string | object | array
     // Here the application starts executing
     // and webpack starts bundling
@@ -27,7 +28,7 @@ module.exports = {
         
         filename: "[name].js",
         // the filename template for entry chunks
-
+        
         library: "[name]",
         // the name of the exported library
         
@@ -78,9 +79,11 @@ module.exports = {
             },
             {
                 test:   /\.css$/,
-                // Adds CSS to the DOM by injecting a <style> tag
                 use: [
+                    // Adds CSS to the DOM by injecting a <style> tag
                     {loader: 'style-loader'},
+                    // css-loader interprets @import and url()
+                    // like import/require() and will resolve them
                     {loader: 'css-loader'}
                 ]
             },
@@ -107,7 +110,7 @@ module.exports = {
                         options: {
                             //name: '[name].[ext]'
                             name: function(file) {
-                                if (argv.mode === 'development') {
+                                if (module.exports.mode === 'development') {
                                     return '[path][name].[ext]';
                                 }
 
@@ -124,7 +127,7 @@ module.exports = {
                         //loader: 'url-loader',
                         //options: {
                             //name: function(file) {
-                                //if (argv.mode === 'development') {
+                                //if (module.exports.mode === 'development') {
                                     //return '[path][name].[ext]';
                                 //}
 
@@ -142,29 +145,10 @@ module.exports = {
             //return /moment|lodash/.test(content);
         //}
     },
-
     
-    
-    watch: argv.mode === 'development',
+    watch: mode === 'development',
 
-    devtool: argv.mode === 'development' ? "source-map" : false // enum
+    devtool: mode === 'development' ? "source-map" : false // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
 };
-
-//if (NODE_ENV == 'production') {
-    //module.exports.plugins.push(
-        //// build optimization plugins
-        //new UglifyJsPlugin({
-            //uglifyOptions: {
-                //ecma: 8
-            //}
-            ////compress: {
-                ////warnings: false,
-                ////drop_console: false,
-            ////}
-        //})
-    //);
-//}
-
-    

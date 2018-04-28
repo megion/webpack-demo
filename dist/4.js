@@ -1,8 +1,8 @@
 (window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[4],{
 
-/***/ "./routes/route2.js":
+/***/ "./routes/route1.js":
 /*!**************************!*\
-  !*** ./routes/route2.js ***!
+  !*** ./routes/route1.js ***!
   \**************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.route = route;
 function route() {
-    console.log('route 2');
+    console.log('route 1');
 };
 
 /***/ })
