@@ -1,12 +1,3 @@
-(window["webpackJsonp_name_"] = window["webpackJsonp_name_"] || []).push([[1],{
-
-/***/ "../node_modules/moment/locale sync recursive ^\\.\\/.*$":
-/*!***************************************************!*\
-  !*** ../node_modules/moment/locale sync ^\.\/.*$ ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
 var map = {
 	"./af": "../node_modules/moment/locale/af.js",
 	"./af.js": "../node_modules/moment/locale/af.js",
@@ -277,8 +268,4 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "../node_modules/moment/locale sync recursive ^\\.\\/.*$";
-
-/***/ })
-
-}]);
-//# sourceMappingURL=1.js.map
+/*# sourceMappingURL=dynamicLoadWelcome.css.map*/

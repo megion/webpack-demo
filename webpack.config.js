@@ -2,6 +2,7 @@ const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 //const ChunksPlugin = require('webpack-split-chunks');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const path = require('path');
 var argv = require('yargs-parser')(process.argv.slice(2))
@@ -79,24 +80,28 @@ module.exports = {
             },
             {
                 test:   /\.css$/,
-                use: [
-                    // Adds CSS to the DOM by injecting a <style> tag
-                    {loader: 'style-loader'},
-                    // css-loader interprets @import and url()
-                    // like import/require() and will resolve them
-                    {loader: 'css-loader'}
-                ]
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        // Adds CSS to the DOM by injecting a <style> tag
+                        {loader: 'style-loader'},
+                        // css-loader interprets @import and url()
+                        // like import/require() and will resolve them
+                        {loader: 'css-loader'}
+                    ]
+                })
             },
             {
                 test: /\.less$/,
-                use: [
-                    // creates style nodes from JS strings
-                    {loader: 'style-loader'},
-                    // translates CSS into CommonJS
-                    {loader: 'css-loader'},
-                    // compiles Less to CSS
-                    {loader: 'less-loader'}
-                ]
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        // creates style nodes from JS strings
+                        {loader: 'style-loader'},
+                        // translates CSS into CommonJS
+                        {loader: 'css-loader'},
+                        // compiles Less to CSS
+                        {loader: 'less-loader'}
+                    ]
+                })
             },
             { 
                 test: /\.handlebars$/,
@@ -145,7 +150,14 @@ module.exports = {
             //return /moment|lodash/.test(content);
         //}
     },
-    
+
+    plugins: [
+        new ExtractTextPlugin({
+            filename: '[name].css',
+            allChunks: true
+        })
+    ],
+
     watch: mode === 'development',
 
     devtool: mode === 'development' ? "source-map" : false // enum

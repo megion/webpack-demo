@@ -1,5 +1,7 @@
 'use strict';
 
+import style from './components/styles/index.less';
+
 //import Menu from './components/menu';
 
 //let pandaMenu = new Menu({

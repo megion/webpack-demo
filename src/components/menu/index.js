@@ -1,8 +1,6 @@
 'use strict';
 
-import style from './menu.less';
-
-import minus from '../img/minus.svg';
+import minus from '../styles/img/minus.svg';
 
 import template from './menu.handlebars';
 
