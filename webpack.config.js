@@ -1,21 +1,12 @@
 const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-//const ChunksPlugin = require('webpack-split-chunks');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require('path');
 var argv = require('yargs-parser')(process.argv.slice(2));
 var mode = argv.mode;
 const devMode = mode === 'development';
-
-// Create multiple instances
-//const extractCSS = new ExtractTextPlugin('[name]-one.css');
-//const extractLESS = new ExtractTextPlugin('[name].css');
-//
-
-
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
@@ -57,11 +48,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: devMode ? '[name].css' : '[name].[hash].css',
-            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            //filename: devMode ? '[name].css' : '[name].[hash].css',
+            filename: '[name].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
         })
-        //extractCSS,
-        //extractLESS
     ],
 
     resolve: {
@@ -118,17 +108,6 @@ module.exports = {
                     'less-loader'
                 ]
             },
-            //{
-                //test: /\.less$/,
-                //use: extractLESS.extract(
-                    //[
-                        //// translates CSS into CommonJS
-                        //'css-loader',
-                        //// compiles Less to CSS
-                        //'less-loader'
-                    //]
-                //)
-            //},
             { 
                 test: /\.handlebars$/,
                 loader: "handlebars-loader"
@@ -150,7 +129,7 @@ module.exports = {
                         }  
                     }
                 ]
-            },
+            }
             //{
                 //test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
                 //use: [
