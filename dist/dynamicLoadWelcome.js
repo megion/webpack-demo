@@ -333,7 +333,7 @@ function getWelcomeMessageDynamical(message) {
         return welcome.getWelcomeMessage(message);
     });
 
-    Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(1)]).then(function() { var module = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (module) {
+    Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(1)]).then(function() { var module = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js"); return typeof module === "object" && module && module.__esModule ? module : Object.assign({/* fake namespace object */}, typeof module === "object" && module, { "default": module }); }).then(function (module) {
         var moment = module.default;
         var today = moment(new Date()).locale('ru');
         console.log(today.format('DD MMM YYYY'));

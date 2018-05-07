@@ -2,11 +2,20 @@ const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 //const ChunksPlugin = require('webpack-split-chunks');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require('path');
-var argv = require('yargs-parser')(process.argv.slice(2))
+var argv = require('yargs-parser')(process.argv.slice(2));
 var mode = argv.mode;
+const devMode = mode === 'development';
+
+// Create multiple instances
+//const extractCSS = new ExtractTextPlugin('[name]-one.css');
+//const extractLESS = new ExtractTextPlugin('[name].css');
+//
+
+
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
@@ -44,7 +53,15 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         // filter moment lib files
         new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
-            /ru|en-gb/)
+            /ru|en-gb/),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        })
+        //extractCSS,
+        //extractLESS
     ],
 
     resolve: {
@@ -78,31 +95,40 @@ module.exports = {
                 loader: "imports-loader?workSettings=>\
                 {delay:500}!exports-loader?Work"
             },
-            {
-                test:   /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        // Adds CSS to the DOM by injecting a <style> tag
-                        {loader: 'style-loader'},
-                        // css-loader interprets @import and url()
-                        // like import/require() and will resolve them
-                        {loader: 'css-loader'}
-                    ]
-                })
-            },
+            //{
+                //test:   /\.css$/,
+                //// Adds CSS to the DOM by injecting a <style> tag
+                //use: [
+                    //// Adds CSS to the DOM by injecting a <style> tag
+                    //{loader: 'style-loader'},
+                    //// css-loader interprets @import and url()
+                    //// like import/require() and will resolve them
+                    //{loader: 'css-loader'}
+                //]
+            //},
             {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        // creates style nodes from JS strings
-                        {loader: 'style-loader'},
-                        // translates CSS into CommonJS
-                        {loader: 'css-loader'},
-                        // compiles Less to CSS
-                        {loader: 'less-loader'}
-                    ]
-                })
+                use: [
+                    // creates style nodes from JS strings
+                    MiniCssExtractPlugin.loader,
+                    //devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    // translates CSS into CommonJS
+                    'css-loader',
+                    // compiles Less to CSS
+                    'less-loader'
+                ]
             },
+            //{
+                //test: /\.less$/,
+                //use: extractLESS.extract(
+                    //[
+                        //// translates CSS into CommonJS
+                        //'css-loader',
+                        //// compiles Less to CSS
+                        //'less-loader'
+                    //]
+                //)
+            //},
             { 
                 test: /\.handlebars$/,
                 loader: "handlebars-loader"
@@ -115,7 +141,7 @@ module.exports = {
                         options: {
                             //name: '[name].[ext]'
                             name: function(file) {
-                                if (module.exports.mode === 'development') {
+                                if (devMode) {
                                     return '[path][name].[ext]';
                                 }
 
@@ -132,7 +158,7 @@ module.exports = {
                         //loader: 'url-loader',
                         //options: {
                             //name: function(file) {
-                                //if (module.exports.mode === 'development') {
+                                //if (devMode) {
                                     //return '[path][name].[ext]';
                                 //}
 
@@ -151,16 +177,8 @@ module.exports = {
         //}
     },
 
-    plugins: [
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            allChunks: true
-        })
-    ],
-
-    watch: mode === 'development',
-
-    devtool: mode === 'development' ? "source-map" : false // enum
+    watch: devMode,
+    devtool: devMode ? "source-map" : false // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
 };
