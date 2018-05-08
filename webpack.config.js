@@ -2,6 +2,7 @@ const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 var argv = require('yargs-parser')(process.argv.slice(2));
@@ -27,7 +28,7 @@ module.exports = {
         // the target directory for all output files
         // must be an absolute path (use the Node.js path module)
         
-        filename: "[name].js",
+        filename: devMode ? '[name].js' : '[name].[hash].js',
         // the filename template for entry chunks
         
         library: "[name]",
@@ -48,9 +49,40 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            //filename: devMode ? '[name].css' : '[name].[hash].css',
-            filename: '[name].css',
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            //filename: '[name].css',
             chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'demo-components.html',
+            inject: true,
+            chunks: ['demoComponents'],
+            template: 'demo-components.html'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'home.html',
+            inject: true,
+            chunks: ['home', 'about'],
+            template: 'home.html'
+        }),
+        
+        new HtmlWebpackPlugin({
+            filename: 'home2.html',
+            inject: true,
+            chunks: ['home2', 'about2'],
+            template: 'home2.html'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'demo-routes.html',
+            inject: true,
+            chunks: ['demoRoutes'],
+            template: 'demo-routes.html'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'dynamic-load.html',
+            inject: true,
+            chunks: ['dynamicLoadWelcome'],
+            template: 'dynamic-load.html'
         })
     ],
 
@@ -124,7 +156,7 @@ module.exports = {
                                     return '[path][name].[ext]';
                                 }
 
-                                return '[hash].[ext]';
+                                return '[path][name][hash].[ext]';
                             }
                         }  
                     }
@@ -157,7 +189,14 @@ module.exports = {
     },
 
     watch: devMode,
-    devtool: devMode ? "source-map" : false // enum
+    devtool: devMode ? "source-map" : false, // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
+    
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        //compress: true,
+        host: 'localhost',
+        port: 9000
+    }
 };
