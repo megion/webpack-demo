@@ -194,9 +194,11 @@ module.exports = {
     // source-map most detailed at the expense of build speed.
     
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        //contentBase: false,
+        //contentBase: path.join(__dirname, "dist"),
         //compress: true,
-        host: 'localhost',
-        port: 9000
+        //host: 'localhost',
+        port: 9000,
+        watchContentBase: true
     }
 };
