@@ -42,7 +42,9 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        // TODO: hotfix:
+        // webpack-dev-server is not working with clean-webpack-plugin
+        devMode ? null : new CleanWebpackPlugin(['dist']),
         // filter moment lib files
         new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
             /ru|en-gb/),
@@ -195,10 +197,10 @@ module.exports = {
     
     devServer: {
         //contentBase: false,
-        //contentBase: path.join(__dirname, "dist"),
+        contentBase: '/',//path.join(__dirname, "dist"),
         //compress: true,
         //host: 'localhost',
-        port: 9000,
-        watchContentBase: true
+        port: 9000
+        //watchContentBase: true
     }
 };

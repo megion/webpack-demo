@@ -8,7 +8,7 @@
     "dev": "./node_modules/webpack/bin/webpack.js --mode development",
     "profile": "./node_modules/webpack/bin/webpack.js --mode production --profile --display-modules --display-reasons",
     "build": "./node_modules/webpack/bin/webpack.js --mode production",
-    "wds": "webpack-dev-server"
+    "wds": "webpack-dev-server --mode development"
   },
   "author": "ilya.zadorozhny",
   "license": "ISC",
