@@ -34,7 +34,7 @@ module.exports = {
         library: "[name]",
         // the name of the exported library
         
-        publicPath: "../dist/", // string
+        publicPath: "", // string
         // the url to the output directory resolved relative to the HTML page
         
         libraryTarget: "umd" // universal module definition
@@ -42,9 +42,7 @@ module.exports = {
     },
 
     plugins: [
-        // TODO: hotfix:
-        // webpack-dev-server is not working with clean-webpack-plugin
-        devMode ? null : new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['dist']),
         // filter moment lib files
         new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
             /ru|en-gb/),
@@ -196,11 +194,6 @@ module.exports = {
     // source-map most detailed at the expense of build speed.
     
     devServer: {
-        //contentBase: false,
-        contentBase: '/',//path.join(__dirname, "dist"),
-        //compress: true,
-        //host: 'localhost',
         port: 9000
-        //watchContentBase: true
     }
 };
