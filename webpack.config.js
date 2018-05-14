@@ -12,13 +12,13 @@ const devMode = mode === 'development';
 module.exports = {
     context: path.resolve(__dirname, "./src"),
     entry: {
-        "home": "./home",
-        "about": "./about",
-        "home2": "./home2",
-        "about2": "./about2",
-        "demoRoutes": "./demo-routes",
-        "demoComponents": "./demo-components",
-        "dynamicLoadWelcome": "./dynamic-load-welcome"
+        //"home": "./home",
+        //"about": "./about",
+        //"home2": "./home2",
+        //"about2": "./about2",
+        //"demoRoutes": "./demo-routes",
+        "demoComponents": "./demo-components"
+        //"dynamicLoadWelcome": "./dynamic-load-welcome"
     }, // string | object | array
     // Here the application starts executing
     // and webpack starts bundling
@@ -28,7 +28,8 @@ module.exports = {
         // the target directory for all output files
         // must be an absolute path (use the Node.js path module)
         
-        filename: devMode ? '[name].js' : '[name].[hash].js',
+        //filename: devMode ? '[name].js' : '[name].[hash].js',
+        filename: '[name].[hash].js',
         // the filename template for entry chunks
         
         library: "[name]",
@@ -49,9 +50,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: devMode ? '[name].css' : '[name].[hash].css',
-            //filename: '[name].css',
-            chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+            //filename: devMode ? '[name].css' : '[name].[hash].css',
+            filename: '[name].[hash].css',
+            //chunkFilename: devMode ? '[id].[name].css' : '[id].[name].[hash].css'
+            chunkFilename: '[id].[name].[hash].css'
         }),
         new HtmlWebpackPlugin({
             filename: 'demo-components.html',
@@ -83,7 +85,9 @@ module.exports = {
             inject: true,
             chunks: ['dynamicLoadWelcome'],
             template: 'dynamic-load.html'
-        })
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     resolve: {
@@ -132,8 +136,8 @@ module.exports = {
                 test: /\.less$/,
                 use: [
                     // creates style nodes from JS strings
-                    MiniCssExtractPlugin.loader,
-                    //devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    //MiniCssExtractPlugin.loader,
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     // translates CSS into CommonJS
                     'css-loader',
                     // compiles Less to CSS
@@ -152,11 +156,11 @@ module.exports = {
                         options: {
                             //name: '[name].[ext]'
                             name: function(file) {
-                                if (devMode) {
-                                    return '[path][name].[ext]';
-                                }
+                                //if (devMode) {
+                                    //return '[path][name].[ext]';
+                                //}
 
-                                return '[path][name][hash].[ext]';
+                                return '[path][name].[hash].[ext]';
                             }
                         }  
                     }
@@ -188,12 +192,13 @@ module.exports = {
         //}
     },
 
-    watch: devMode,
+    //watch: devMode,
     devtool: devMode ? "source-map" : false, // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.
     
     devServer: {
         port: 9000
+        //hot: true
     }
 };
