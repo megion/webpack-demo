@@ -1,6 +1,10 @@
 
 # Webpack demo application
 
+Install dependencies
+
+    $ npm install 
+
 ## Build webpack demo for development
 
     $ npm run dev 
