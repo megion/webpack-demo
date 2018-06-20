@@ -12,13 +12,13 @@ const devMode = mode === 'development';
 module.exports = {
     context: path.resolve(__dirname, "./src"),
     entry: {
-        //"home": "./home",
-        //"about": "./about",
-        //"home2": "./home2",
-        //"about2": "./about2",
-        //"demoRoutes": "./demo-routes",
-        "demoComponents": "./demo-components"
-        //"dynamicLoadWelcome": "./dynamic-load-welcome"
+        "home": "./home",
+        "about": "./about",
+        "home2": "./home2",
+        "about2": "./about2",
+        "demoRoutes": "./demo-routes",
+        "demoComponents": "./demo-components",
+        "dynamicLoadWelcome": "./dynamic-load-welcome"
     }, // string | object | array
     // Here the application starts executing
     // and webpack starts bundling
@@ -192,7 +192,7 @@ module.exports = {
         //}
     },
 
-    //watch: devMode,
+    watch: devMode,
     devtool: devMode ? "source-map" : false, // enum
     // enhance debugging by adding meta info for the browser devtools
     // source-map most detailed at the expense of build speed.

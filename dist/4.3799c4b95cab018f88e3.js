@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[4],{"./components/menu/menu-items.js":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.menuItems=[{text:"Яйца",href:"#eggs"},{text:"Мясо",href:"#meat"},{text:"99% еды - бамбук!",href:"#bamboo"}]}}]);
