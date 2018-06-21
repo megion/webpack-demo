@@ -257,42 +257,27 @@ public enum ru.lanit.hcs.bills.api.dto.ServiceType {
                 });
             }
 
-            function updateCapitalRepairPaymentReceiverDTO(accountServices, paymentReceiverWithServices) {
-                if(paymentReceiverWithServices.services && paymentReceiverWithServices.services.length) {
-
-                    var paymentReceiverDTO = {
-                        paymentInformation: paymentReceiverWithServices.paymentInformation,
-                        capitalRepairPaymentInformation: paymentReceiverWithServices.capitalRepairPaymentInformation
-                    };
-
-                    if(paymentReceiverWithServices.services.length === 1) {
-                        // capital repair service is selected or was selected before, so simple update link
-                        accountServices.capitalRepairCharge.charge.paymentReceiverDTO = paymentReceiverDTO;
-                    } else {
-                        // more one result for capital repair PI it in not possible
-                        console.error("capitalRepairPaymentInformation contains more then one service",
-                            paymentReceiverWithServices);
+            function updateOtherPaymentReceiverDTO(receiverService, paymentReceiverDTO, otherAssociations) {
+                for(var i=0; i<otherAssociations.length; i++) {
+                    var association = otherAssociations[i];
+                    // TODO: compare services by code
+                    if(association.paymentReceiverService.service.code === receiverService.service.code) {
+                        association.accountService.charge.paymentReceiverDTO = paymentReceiverDTO;
+                        return;
                     }
                 }
             }
 
-            function updateOtherPaymentReceiverDTO(receiverService, paymentReceiverWithServices, otherAssociations) {
-                if(paymentReceiverWithServices.services && paymentReceiverWithServices.services.length) {
-
-                    var paymentReceiverDTO = {
-                        paymentInformation: paymentReceiverWithServices.paymentInformation,
-                        capitalRepairPaymentInformation: paymentReceiverWithServices.capitalRepairPaymentInformation
-                    };
-
-                    if(paymentReceiverWithServices.services.length === 1) {
-                        // capital repair service is selected or was selected before, so simple update link
-                        accountServices.capitalRepairCharge.charge.paymentReceiverDTO = paymentReceiverDTO;
-                    } else {
-                        // more one result for capital repair PI it in not possible
-                        console.error("capitalRepairPaymentInformation contains more then one service",
-                            paymentReceiverWithServices);
+            function removeUnselectedOtherPaymentReceiverDTO(otherSelectedServices, otherAssociations) {
+                angular.forEach(otherAssociations, function(association) {
+                    var service = _.find(otherSelectedServices, function(item) {
+                        return item.service.code === association.paymentReceiverService.service.code;
+                    });
+                    // not found - service was unselected
+                    if(!service) {
+                        association.accountService.charge.paymentReceiverDTO = null;
                     }
-                }
+                });
             }
 
             /**
@@ -314,6 +299,8 @@ public enum ru.lanit.hcs.bills.api.dto.ServiceType {
                 // unique penalties
                 var penaltiesSet = {};
                 var otherAssociations = [];
+                // all other (except penalties) selected services
+                var otherSelectedServices = [];
 
                 iterateByAccountServices(accountServices, function(accountService, paymentReceiverService) {
                     if(accountServices.capitalRepairCharge && (accountServices.capitalRepairCharge == accountService)) {
@@ -336,61 +323,75 @@ public enum ru.lanit.hcs.bills.api.dto.ServiceType {
 
                 // iterate by PaymentReceiverWithServicesDTO
                 angular.forEach(paymentDocument.paymentReceiverWithServicesDTOList, function(paymentReceiverWithServices) {
+                    var paymentReceiverDTO = {
+                        paymentInformation: paymentReceiverWithServices.paymentInformation,
+                        capitalRepairPaymentInformation: paymentReceiverWithServices.capitalRepairPaymentInformation
+                    };
                     paymentReceiverWithServices.availableServices = [];
                     if(paymentReceiverWithServices.capitalRepairPaymentInformation) {
                         // for KR available only KR service
                         paymentReceiverWithServices.availableServices.push(capitalRepairService);
 
                         if(isUpdatePaymentReceiverDTO) {
-                            updateCapitalRepairPaymentReceiverDTO();
+                            // TODO here list of services should be contains only one - it is capital repair service
+                            angular.forEach(paymentReceiverWithServices.services, function(service) {
+                                otherSelectedServices.push(service);
+                                updateOtherPaymentReceiverDTO(service, paymentReceiverDTO, otherAssociations);
+                            });
                         }
-                    } else {
-                        var availablePenalties = angular.copy(allPenaltiesServices);
-                        // choices array
-                        var selectedPenalties = [];
-                        var selectedOthers = [];
 
-                        // iterate by PaymentReceiverServiceDTO
-                        angular.forEach(paymentReceiverWithServices.services, function(service) {
-                            // penalties are uinique on pi 
-                            if(service.serviceType === BILLS_ACCOUNT_SERVICE_TYPE.PENALTIES_SERVICE) {
-                                selectedPenalties.push(service);
-                                // add only penalties is not exitsting 
-                                for(var i=0; i<availablePenalties.length; i++) {
-                                    var penaltie = availablePenalties[i];
-                                    // TODO: compare services by code
-                                    if(penaltie.service.code === service.service.code) {
-                                        // remove and start check next service
-                                        availablePenalties.splice(i, 1);
-                                        return;
-                                    }
-                                }
-                            } else {
-                                selectedOthers.push(service);
-                                for(var j=0; j<availableOtherServices.length; j++) {
-                                    var otherService = availableOtherServices[j];
-                                    // TODO: compare services by code
-                                    if(otherService.service.code === service.service.code) {
-                                        // service already exists, so remove it form available
-                                        availableOtherServices.splice(j, 1);
-                                        // remove and start check next service
-                                        return;
-                                    }
+                        return;
+                    }
+
+                    var availablePenalties = angular.copy(allPenaltiesServices);
+                    // choices array
+                    var selectedPenalties = [];
+                    var selectedOthers = [];
+
+                    // iterate by PaymentReceiverServiceDTO
+                    angular.forEach(paymentReceiverWithServices.services, function(service) {
+                        // penalties are uinique on pi 
+                        if(service.serviceType === BILLS_ACCOUNT_SERVICE_TYPE.PENALTIES_SERVICE) {
+                            selectedPenalties.push(service);
+                            // add only penalties is not exitsting 
+                            for(var i=0; i<availablePenalties.length; i++) {
+                                var penaltie = availablePenalties[i];
+                                // TODO: compare services by code
+                                if(penaltie.service.code === service.service.code) {
+                                    // remove and start check next service
+                                    availablePenalties.splice(i, 1);
+                                    return;
                                 }
                             }
-                            
-                        });
+                        } else {
+                            if(isUpdatePaymentReceiverDTO) {
+                                otherSelectedServices.push(service);
+                                updateOtherPaymentReceiverDTO(service, paymentReceiverDTO, otherAssociations);
+                            }
+                            selectedOthers.push(service);
+                            for(var j=0; j<availableOtherServices.length; j++) {
+                                var otherService = availableOtherServices[j];
+                                // TODO: compare services by code
+                                if(otherService.service.code === service.service.code) {
+                                    // service already exists, so remove it form available
+                                    availableOtherServices.splice(j, 1);
+                                    // remove and start check next service
+                                    return;
+                                }
+                            }
+                        }
 
-                        // list is only for UI
-                        // availabel services have to contains:
-                        // + all penalties (selected + (all - selected))
-                        // + other selected 
-                        // + other not selected in all list
-                        // FIXME: service should be sorted
-                        paymentReceiverWithServices.availableServices = 
-                            selectedOthers.concat(availablePenalties).concat(selectedPenalties);
-                    }
-                    
+                    });
+
+                    // list is only for UI
+                    // availabel services have to contains:
+                    // + all penalties (selected + (all - selected))
+                    // + other selected 
+                    // + other not selected in all list
+                    // FIXME: service should be sorted
+                    paymentReceiverWithServices.availableServices = 
+                        selectedOthers.concat(availablePenalties).concat(selectedPenalties);
+
                 });
 
                 angular.forEach(paymentDocument.paymentReceiverWithServicesDTOList, function(paymentReceiverWithServices) {
@@ -400,6 +401,11 @@ public enum ru.lanit.hcs.bills.api.dto.ServiceType {
                             paymentReceiverWithServices.availableServices);
                     }
                 });
+
+                if(isUpdatePaymentReceiverDTO) {
+                    removeUnselectedOtherPaymentReceiverDTO(otherSelectedServices, otherAssociations);
+                    removeUnselectedPenaltiesPaymentReceiverDTO(xxx, xxx);
+                }
             }
 
 
