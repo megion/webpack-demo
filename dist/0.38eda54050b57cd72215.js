@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[0],{"./routes/route1.js":function(n,o,e){"use strict";function t(){console.log("route 1")}e.r(o),e.d(o,"route",function(){return t})}}]);

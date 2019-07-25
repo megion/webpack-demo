@@ -10,7 +10,8 @@ var menuItems = [
     }, {
         text: '99% еды - бамбук!',
         href: '#bamboo'
-    }];
+    }
+];
 
 export {
     menuItems

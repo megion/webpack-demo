@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[14],{"./welcome.js":function(e,o,n){"use strict";function c(e){var o="Welcome ".concat(e);return console.log("welcom module: ".concat(o)),o}n.r(o),n.d(o,"getWelcomeMessage",function(){return c}),console.log("init welcome module")}}]);

@@ -105,13 +105,7 @@ module.exports = {
                 include: /src/,
                 loader: "babel-loader", 
                 options: {
-                    "presets": ["env"
-                        //["env", {
-                            //"targets": {
-                                //"chrome": "60"
-                            //}
-                        //}]
-                    ]
+                    "presets": ["@babel/preset-env"]
                     //"plugins": ["transform-es2015-modules-umd"]
                 }
                 // options for the loader

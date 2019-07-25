@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[13],{"./components/menu/menu-items.js":function(e,n,t){"use strict";t.r(n),t.d(n,"menuItems",function(){return m});var m=[{text:"Яйца",href:"#eggs"},{text:"Мясо",href:"#meat"},{text:"99% еды - бамбук!",href:"#bamboo"}]}}]);
