@@ -1,1 +1,0 @@
-(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[8],{"./welcome.js":function(e,o,n){"use strict";Object.defineProperty(o,"__esModule",{value:!0}),console.log("init welcome module"),o.getWelcomeMessage=function(e){var o="Welcome "+e;return console.log("welcom module: "+o),o}}}]);

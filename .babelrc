@@ -1,13 +1,6 @@
 {
     "presets": [
-        /*["env", {*/
-            /*"targets": {*/
-                /*[>"edge": "12"<]*/
-                /*"chrome": "60"*/
-            /*}*/
-        /*}]*/
-        /*["env"]*/
+        "@babel/preset-env"
     ],
     "plugins": ["syntax-dynamic-import"]
 }
-

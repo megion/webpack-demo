@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 //const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -43,7 +43,8 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        //new webpack.ProgressPlugin(),
+        new CleanWebpackPlugin(),
         // filter moment lib files
         new webpack.ContextReplacementPlugin(/node_modules\/moment\/locale/,
             /ru|en-gb/),
